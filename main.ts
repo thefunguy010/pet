@@ -1,3 +1,28 @@
+input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        # # . # #
+        . . . . .
+        . # # # .
+        `)
+    control.waitMicros(5000000)
+    basic.showLeds(`
+        . . . . .
+        # # . # #
+        . . . . .
+        . . . . .
+        . # # # .
+        `)
+    control.waitMicros(16)
+    basic.showLeds(`
+        . . . . .
+        . # . # .
+        . . . . .
+        # . . . #
+        . # # # .
+        `)
+})
 input.onLogoEvent(TouchButtonEvent.Pressed, function () {
     pets += 1
     if (pets == randint(1, 10)) {

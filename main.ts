@@ -1,31 +1,6 @@
-input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
-    basic.showLeds(`
-        . . . . .
-        . . . . .
-        # # . # #
-        . . . . .
-        . # # # .
-        `)
-    control.waitMicros(5000000)
-    basic.showLeds(`
-        . . . . .
-        # # . # #
-        . . . . .
-        . . . . .
-        . # # # .
-        `)
-    control.waitMicros(16)
-    basic.showLeds(`
-        . . . . .
-        . # . # .
-        . . . . .
-        # . . . #
-        . # # # .
-        `)
-})
-input.onLogoEvent(TouchButtonEvent.Pressed, function () {
+input.onButtonPressed(Button.A, function () {
     pets += 1
-    if (pets == randint(1, 10)) {
+    if (pets == randint(1, 8)) {
         music.setBuiltInSpeakerEnabled(true)
         basic.showLeds(`
             . . . . .
@@ -51,8 +26,10 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
             # . . . #
             . # # # .
             `)
+        sleep_time += 2
     }
 })
+let sleep_time = 0
 let pets = 0
 basic.showLeds(`
     . . . . .
@@ -81,12 +58,13 @@ loops.everyInterval(60000, function () {
     pets = 0
 })
 basic.forever(function () {
-    if (pets == 10) {
+    if (pets == 8) {
         pets = 0
     }
 })
 control.inBackground(function () {
-    control.waitMicros(randint(10000000, 960000000))
+    sleep_time = randint(10000000, 60000000)
+    control.waitMicros(sleep_time)
     basic.showLeds(`
         . . . . .
         . # . # .

@@ -29,8 +29,37 @@ input.onButtonPressed(Button.A, function () {
         sleep_time += 2
     }
 })
+input.onButtonPressed(Button.B, function () {
+    if (awake__asleep == 0) {
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            # # . # #
+            . . . . .
+            . # # # .
+            `)
+        control.waitMicros(16)
+        basic.showLeds(`
+            . . . . .
+            # # . # #
+            . . . . .
+            . . . . .
+            . # # # .
+            `)
+        control.waitMicros(16)
+        basic.showLeds(`
+            . . . . .
+            . # . # .
+            . . . . .
+            # . . . #
+            . # # # .
+            `)
+    }
+})
 let sleep_time = 0
 let pets = 0
+let awake__asleep = 0
+awake__asleep = 0
 basic.showLeds(`
     . . . . .
     . . . . .
@@ -54,6 +83,7 @@ basic.showLeds(`
     # . . . #
     . # # # .
     `)
+awake__asleep = 1
 loops.everyInterval(60000, function () {
     pets = 0
 })
@@ -88,4 +118,5 @@ control.inBackground(function () {
         . . . . .
         . # # # .
         `)
+    awake__asleep = 0
 })
